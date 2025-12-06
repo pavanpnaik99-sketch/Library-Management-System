@@ -1,5 +1,10 @@
 # Library-Management-System
 Library Management System using SQL Project 
+# Project Title: Library Management System
+Database: library_db
+
+This project demonstrates the implementation of a Library Management System using SQL. It includes creating and managing tables, performing CRUD operations. The goal is to showcase skills in database design, manipulation, and querying.
+
 # Project Structure
 1. Database Setup
 <img width="1101" height="631" alt="library_erd" src="https://github.com/user-attachments/assets/d886955b-78f2-423c-b85e-e4e97e4035d4" />
