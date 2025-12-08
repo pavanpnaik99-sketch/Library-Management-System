@@ -266,7 +266,36 @@ select * from members where member_id in (select distinct issued_member_id from 
 select * from active_members;
 ```
 
+```
+Task 15: **Branch Performance Report
+Create a query that generates a performance report for each branch, showing the number of` books issued, 
+the number of books returned, and the total revenue generated from book rentals.
 
+```sql
+CREATE TABLE branch_reports
+AS
+SELECT 
+    b.branch_id,
+    b.manager_id,
+    COUNT(ist.issued_id) as number_book_issued,
+    COUNT(rs.return_id) as number_of_book_return,
+    SUM(bk.rental_price) as total_revenue
+  from issued_status as ist
+join 
+employees as e
+on e.emp_id=ist.issued_emp_id
+join
+branch b
+on e.branch_id=b.branch_id
+left join 
+return_status as rs
+on rs.issued_id=ist.issued_id
+join
+books as bk 
+on bk.isbn=ist.issued_book_isbn
+group by 1,2;
+```
+```
 
 
 
