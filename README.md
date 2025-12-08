@@ -234,3 +234,41 @@ LEFT JOIN
 return_status as rs
 ON rs.issued_id = ist.issued_id
 WHERE rs.return_id IS NULL;
+```
+Task 13: **Task 13: Identify Members with Overdue Books
+```sql 
+SELECT 
+    ist.issued_member_id,
+    m.member_name,
+    bk.book_title,
+    ist.issued_date,
+    CURRENT_DATE - ist.issued_date as over_dues_days
+FROM issued_status as ist
+JOIN 
+members as m
+    ON m.member_id = ist.issued_member_id
+JOIN 
+books as bk
+ON bk.isbn = ist.issued_book_isbn
+LEFT JOIN 
+return_status as rs
+ON rs.issued_id = ist.issued_id
+WHERE 
+    rs.return_date IS NULL
+    AND
+    (CURRENT_DATE - ist.issued_date) > 30 ORDER BY 1;
+```
+Task 14: CTAS: **Create a Table of Active Members
+```sql
+create table active_members as 
+select * from members where member_id in (select distinct issued_member_id from issued_status
+												where issued_date >= current_date  - interval '2 month');
+select * from active_members;
+```
+
+
+
+
+
+
+
