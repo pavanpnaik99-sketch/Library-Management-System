@@ -266,12 +266,9 @@ select * from members where member_id in (select distinct issued_member_id from 
 select * from active_members;
 ```
 
-```
-Task 15: **Branch Performance Report
-Create a query that generates a performance report for each branch, showing the number of` books issued, 
-the number of books returned, and the total revenue generated from book rentals.
 
-```sql
+Task 15: **Branch Performance Report
+``` sql
 CREATE TABLE branch_reports
 AS
 SELECT 
@@ -295,7 +292,7 @@ books as bk
 on bk.isbn=ist.issued_book_isbn
 group by 1,2;
 ```
-```
+
 
 
 
